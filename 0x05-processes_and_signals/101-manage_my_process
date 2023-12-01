@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+# Check the argument provided
+case "$1" in
+    start)
+        # Start manage_my_process
+        ./manage_my_process &
+        pid=$!
+        echo "$pid" > /var/run/my_process.pid
+        echo "manage_my_process started"
+        ;;
+    stop)
+        # Stop manage_my_process
+        kill $(cat /var/run/my_process.pid)
+        rm -f /var/run/my_process.pid
+        echo "manage_my_process stopped"
+        ;;
+    restart)
+        # Restart manage_my_process
+        kill $(cat /var/run/my_process.pid) 2>/dev/null
+        rm -f /var/run/my_process.pid
+        ./manage_my_process &
+        pid=$!
+        echo "$pid" > /var/run/my_process.pid
+        echo "manage_my_process restarted"
+        ;;
+    *)
+        # Display usage for invalid arguments
+        echo "Usage: manage_my_process {start|stop|restart}"
+        exit 1
+        ;;
+esac

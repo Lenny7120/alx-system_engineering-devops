@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+# Function to handle SIGTERM signal
+sigterm_handler() {
+    echo "I hate the kill command"
+}
+
+# Function to handle SIGINT signal
+sigint_handler() {
+    echo "Y U no love me?!"
+}
+
+# Function to handle SIGQUIT signal and cleanup
+sigquit_handler() {
+    echo "Received SIGQUIT or SIGTERM. Cleaning up..."
+    rm -f /var/run/myscript.pid
+    exit 0
+}
+
+# Trap signals and associate them with respective functions
+trap 'sigterm_handler' SIGTERM
+trap 'sigint_handler' SIGINT
+trap 'sigquit_handler' SIGQUIT
+
+# Get current PID and write it to the file
+echo "$$" > /var/run/myscript.pid
+
+# Display messages indefinitely
+while true
+do
+    echo "To infinity and beyond"
+    sleep 1
+done
