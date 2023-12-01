@@ -1,0 +1,8 @@
+#!/bin/bash
+
+# Assuming your Apache log file is named "access.log"
+log_file="access.log"
+
+# Use awk to process the log file
+awk '{ ip_count[$1 " " $9]++ } END { for (i in ip_count) print ip_count[i], i }' "$log_file" | sort -nr
+
