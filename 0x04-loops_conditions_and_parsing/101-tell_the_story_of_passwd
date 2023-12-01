@@ -1,4 +1,4 @@
-!/usr/bin/env bash
+#!/usr/bin/env bash
 #checkgi
 # Read the file /etc/passwd line by line
 while IFS=: read -r username password user_id group_id user_id_info home_directory command_shell; do
