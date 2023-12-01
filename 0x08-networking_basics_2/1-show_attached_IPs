@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# Script to display active IPv4 IPs on the machine
+# Using ifconfig to retrieve active IPv4 IPs
+ifconfig | awk '/inet /{print $2}' | grep -Eo '([0-9]{1,3}\.){3}[0-9]{1,3}'
