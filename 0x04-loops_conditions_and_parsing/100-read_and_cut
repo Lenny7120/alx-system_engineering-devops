@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+# content of the file /etc/passwd
+
+# Read the file /etc/passwd line by line
+while read -r line; do
+  # Split the line by colon and store the fields in an array
+  IFS=: read -ra fields <<< "$line"
+  # Display the username, user id and home directory path for the user
+  echo "username: ${fields[0]}"
+  echo "user id: ${fields[2]}"
+  echo "home directory path: ${fields[5]}"
+done < /etc/passwd # Redirect the file /etc/passwd

@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+# A script that parses Apache log file and displays IP and HTTP cod
+awk '{print $1, $9}' apache-access.log
